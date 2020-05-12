@@ -475,7 +475,7 @@ public class  MainActivity extends AppCompatActivity implements OnPostClickListe
                     recyclerView.setVisibility(View.VISIBLE);
                     emptyMsgLayout.setVisibility(View.GONE);
                     postSwitchBtn.setVisibility(View.VISIBLE);
-                    mAdapter.notifyDataSetChanged();
+                    changeDisplayedItems();
                 }
                 mTempPosts.clear();
             } else {
@@ -501,7 +501,7 @@ public class  MainActivity extends AppCompatActivity implements OnPostClickListe
                         recyclerView.setVisibility(View.VISIBLE);
                         emptyMsgLayout.setVisibility(View.GONE);
                         postSwitchBtn.setVisibility(View.VISIBLE);
-                        mAdapter.notifyDataSetChanged();
+                        changeDisplayedItems();
                     }
                     hideProgressBar();
                 }
@@ -530,7 +530,7 @@ public class  MainActivity extends AppCompatActivity implements OnPostClickListe
                         recyclerView.setVisibility(View.VISIBLE);
                         emptyMsgLayout.setVisibility(View.GONE);
                         postSwitchBtn.setVisibility(View.VISIBLE);
-                        mAdapter.notifyDataSetChanged();
+                        changeDisplayedItems();
                     }
                     mTempPosts.clear();
                 }
@@ -557,7 +557,7 @@ public class  MainActivity extends AppCompatActivity implements OnPostClickListe
                         recyclerView.setVisibility(View.VISIBLE);
                         emptyMsgLayout.setVisibility(View.GONE);
                         postSwitchBtn.setVisibility(View.VISIBLE);
-                        mAdapter.notifyDataSetChanged();
+                        changeDisplayedItems();
                     }
                     mTempPosts.clear();
                     hideProgressBar();
@@ -791,5 +791,18 @@ public class  MainActivity extends AppCompatActivity implements OnPostClickListe
     protected void onResume() {
         super.onResume();
         subscribeToNotifications();
+    }
+
+
+    private void changeDisplayedItems(){
+        recyclerView.setAdapter(null);
+        recyclerView.setLayoutManager(null);
+        recyclerView.setAdapter(mAdapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        mAdapter.notifyDataSetChanged();
     }
 }
