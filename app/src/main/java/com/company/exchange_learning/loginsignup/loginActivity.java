@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -117,6 +119,7 @@ public class loginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Constants.uid= user.getUid();
+                            setToken(user.getUid());
                             getUserInformation();
                         } else {
                             setViews();
@@ -194,6 +197,7 @@ public class loginActivity extends AppCompatActivity {
                                     editor.apply();
                                 }
                                 Constants.uid = user.getUid();
+                                setToken(user.getUid());
                                 getUserInformation();
                                 progressBar.hide();
                             } else {
@@ -305,5 +309,14 @@ public class loginActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         checkPrefsAndLogin();
+    }
+
+    private void setToken(String uid){
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this, instanceIdResult -> {
+            String token = instanceIdResult.getToken();
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference("User_Information").child(uid).child("android_device_token");
+            myRef.setValue(token);
+        });
     }
 }
