@@ -24,7 +24,7 @@ public class Settings extends AppCompatActivity {
         disable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Settings.this,"Not Implemented",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Settings.this,"Deleted",Toast.LENGTH_SHORT).show();
             }
         });
     }

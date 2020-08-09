@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Exchange Learning</string>
+    <string name="googlemaps_Api_key">AIzaSyA7m3_vUGgMZOs_EX1uKme2POfKPhmPBUk</string>
     <string name="title_activity_login">Log in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

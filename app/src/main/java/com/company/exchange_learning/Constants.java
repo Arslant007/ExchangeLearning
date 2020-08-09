@@ -3,6 +3,8 @@ package com.company.exchange_learning;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Constants {
+
+
     public static String uid = "";
     public static String uName = "";
     public static String uCommunity = "";
@@ -32,4 +34,6 @@ public class Constants {
     public static String getuCommunity() {
         return uCommunity;
     }
+
+
 }

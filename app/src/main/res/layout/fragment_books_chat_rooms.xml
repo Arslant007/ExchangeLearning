@@ -7,15 +7,15 @@
     tools:context=".fragements.BooksChatRoomsFragment">
 
     <com.wang.avi.AVLoadingIndicatorView
-        android:layout_centerInParent="true"
         android:id="@+id/bookChatRoomAvi"
+        style="@style/AVLoadingIndicatorView"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
         android:elevation="1dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:indicatorName="BallClipRotateMultipleIndicator"
-        app:indicatorColor="@color/hamburger"
         android:visibility="visible"
-        style="@style/AVLoadingIndicatorView" />
+        app:indicatorColor="@color/hamburger"
+        app:indicatorName="BallClipRotateMultipleIndicator" />
 
     <TextView
         android:layout_marginStart="32dp"
@@ -41,10 +41,10 @@
         android:src="@drawable/ic_speech_bubble" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="12dp"
-        android:layout_centerInParent="true"
         android:id="@+id/bookChatRoomRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="267dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="12dp" />
 
 </RelativeLayout>

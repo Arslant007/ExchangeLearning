@@ -1,9 +1,14 @@
 package com.company.exchange_learning;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,9 +22,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -42,6 +49,8 @@ import com.company.exchange_learning.listeners.OnPostUserImageClickListener;
 import com.company.exchange_learning.loginsignup.loginActivity;
 import com.company.exchange_learning.model.Notification;
 import com.company.exchange_learning.model.PostModel;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
@@ -68,6 +77,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class  MainActivity extends AppCompatActivity implements OnPostClickListener, OnPostUserImageClickListener {
 
     private static final String TAG = "MainActivity";
+
+
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     CircleImageView drawerProfileImagView;
@@ -103,6 +114,7 @@ public class  MainActivity extends AppCompatActivity implements OnPostClickListe
     boolean isViewingBook = false;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AndroidThreeTen.init(getApplicationContext());
@@ -110,6 +122,9 @@ public class  MainActivity extends AppCompatActivity implements OnPostClickListe
         setContentView(R.layout.activity_main);
         initUI();
     }
+
+
+
 
     private void initUI() {
         toolbar = findViewById(R.id.toolbar);
@@ -791,7 +806,8 @@ public class  MainActivity extends AppCompatActivity implements OnPostClickListe
     protected void onResume() {
         super.onResume();
         subscribeToNotifications();
-    }
+        }
+
 
 
     private void changeDisplayedItems(){
